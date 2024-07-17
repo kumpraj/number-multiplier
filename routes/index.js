@@ -9,6 +9,10 @@ const {
 router.post("/submit-number", async (req, res) => {
   const { number } = req.body;
 
+  if (!number || number === null) {
+    return res.status(400).json({ error: "Number is required" });
+  }
+
   if (typeof number !== "number" || number < 1 || number > 25) {
     return res.status(400).json({ error: "Number must be between 1 and 25" });
   }
